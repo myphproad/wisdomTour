@@ -1,0 +1,55 @@
+<title>{$seo['title']}</title>
+<meta name="keywords" content="{$seo['keywords']}">
+<meta name="description" content="{$seo['description']}">
+
+样式调用：
+<link href="__PUBLIC__/2016/css/common.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/2016/css/layout.css" rel="stylesheet" type="text/css">
+
+首页链接：<a href="__ROOT__">首页</a>
+
+搜索：
+<form action="__ROOT__/index.php/index/search.html" method="get">
+<input  name="q" type="text"  />
+<input  type="submit" />
+</form>
+
+栏目列表：
+
+
+{category name='vo' pid='1' order='catid desc'  num='6'}
+<a href="{$vo.url}">{$vo.catname}</a>
+{/category}
+
+pid为上级栏目 不写pid默认为调用一级栏目
+
+指定栏目：<a href="{:get_caturl(6)}">{:get_catname(6)}</a>
+
+当前位置：{:catpos($catid} 只有栏目页和内容页有效
+
+
+
+文章列表：
+
+ {arclist name='vo' catid='17' thumb='1' order='listorder desc' num='4'}
+
+    <a href="{$vo.url}"><img src="{$vo.thumb}" height="220" />标题：{$vo.title} 描述：{$vo.description}
+    时间：{$vo.inputtime|date="Y-m-d H:i:s",###} 点击：{$vo.hits}</a>
+{/arclist}
+
+thumb='1'表示列表有图片 catid='17'表示指定栏目不填表示所有栏目
+
+
+
+友情链接：
+
+{flist name='vo' logo='1' order='id desc' num='40'}
+<img src="{$vo.logo}" />
+<a href="{$vo.url}">{$vo.title}</a>&nbsp;
+{/flist}
+
+logo='1'表示有图片
+
+
+大部分调用看默认模板即可
+

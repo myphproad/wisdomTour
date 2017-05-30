@@ -1,0 +1,99 @@
+{include file="public:header" /}
+ <script language="javascript">
+function confirm_delete() {
+	if (!confirm("确认要删除？")) {
+		window.event.returnValue = false;
+	}
+}
+</script>
+<div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:url('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">栏目管理</span></div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                       <div class="result-list">
+                           <a  href="{:url('Menu/add')}"><i class="icon-font"></i>添加栏目</a>
+                           <a onclick="myform.action='{:url('Menu/del')}';myform.submit();" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                           <a onclick="myform.action='{:url('Menu/status')}';myform.submit();" href="javascript:void(0)"><i class="icon-font"></i>更新状态</a>
+                           <a onClick="confirm_delete()" href="{:url('Menu/deleteAll')}"><i class="icon-font"></i>删除所有文章</a>
+                       </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%" >
+                        <thead>
+                        <tr>
+                            <th class="center"><input class="allChoose" id="check_box" onclick="selectall('id[]');" type="checkbox"></th>
+                            <th>菜单名称</th>
+                            <th>链接</th>
+                            <th>ICON</th>
+                            <th class="center">状态</th>
+                            <th>排序</th>
+                            <th class="center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name='list' id='val'}
+                            <tr>
+                                <td class="tc"><input name="id[]" value="{$val.id}" type="checkbox"></td>
+                                <td>{$val['title']}</td>
+                                <td>{$val['name']}</td>
+                                <td><i class="{$val.icon}"></i></td>
+                                <td class="center">
+                                    {if condition="$val.islink eq 1"}显示
+                                    {else /}隐藏
+                                    {/if}
+                                </td>
+                                <td>{$val['listorder']}</td>
+                                <td class="center">
+                                    <a href="{:url('edit')}?id={$val['id']}">修改</a>&nbsp;
+                                    <a class="del"  href="{:url('del')}?id={$val['id']}" title="删除">删除</a>
+                                </td>
+                            </tr>
+                            {notempty name="val.children"}
+                                {volist name="val.children" id="v"}
+                                    <tr>
+                                        <td class="tc"><input name="id[]" value="{$v['id']}" type="checkbox"></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;┗━{$v['title']}</td>
+                                        <td>{$v['name']}</td>
+                                        <td><i class="{$v.icon}"></i></td>
+                                        <td class="center">
+                                            {if condition="$v.islink eq 1"}显示{else /}隐藏{/if}</td>
+                                        <td>{$v['listorder']}</td>
+                                        <td class="center">
+                                            <a href="{:url('edit')}?id={$v['id']}">修改</a>&nbsp;
+                                            <a class="del"  href="{:url('del')}?id={$v['id']}" title="删除">删除</a>
+                                        </td>
+                                    </tr>
+                                    {notempty name="v.children"}
+                                        {volist name="v.children" id="vv"}
+                                            <tr>
+                                                <td class="tc"><input name="id[]" value="{$vv['id']}" type="checkbox"></td>
+                                                <td>&nbsp;&nbsp;&nbsp;&nbsp;┗━{$vv['title']}</td>
+                                                <td>{$vv['name']}</td>
+                                                <td><i class="{$vv.icon}"></i></td>
+                                                <td class="center"><if condition="$vv.islink eq 1">显示<else />隐藏</if></td>
+                                                <td>{$vv['listorder']}</td>
+                                                <td class="center">
+                                                    <a href="{:url('edit')}?id={$vv['id']}">修改</a>&nbsp;
+                                                    <a class="del"  href="{:url('del')}?id={$vv['id']}" title="删除">删除</a>
+                                                </td>
+                                            </tr>
+                                        {/volist}
+                                    {/notempty}
+                               {/volist}
+                            {/notempty}
+                        {/volist}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+</body>
+</html>

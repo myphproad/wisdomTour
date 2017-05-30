@@ -1,0 +1,71 @@
+<!--桌面开始-->
+<div class="desk-wallpaper">
+    <img class="desk-wallpaper-image" src="__IMGAHES__/wallpaper/10.jpg" style="display: block;">
+    <img class="desk-wallpaper-image-back" src="__IMGAHES__/wallpaper/10.jpg" style="display: none;">
+</div>
+<!--桌面结束-->
+<!--底部开始-->
+<div class="footer-banner">
+    <div class="footer-banner-action-left">
+        <div class="footer-banner-action footer-banner-action-profile" rel="tooltip" data-placement="top"
+             data-original-title="桌面">
+            <a href="__ROOT__"><i aria-hidden="true" class="footer-banner-action-icon icon-windows"></i></a>
+        </div>
+    </div>
+    <div class="footer-banner-inner">
+        <marquee id="affiche" align="absmiddle" behavior="scroll" direction="left" loop="-1" scrollamount="10"
+                 scrolldelay="10" onMouseOut="this.start()" onMouseOver="this.stop()">
+            {$seo['title']}@<a class="author" target="_blank" href="http://www.eciyuan.net/">宁夏亿次元科技有限公司</a>
+        </marquee>
+    </div>
+    <div class="footer-banner-action-right">
+        <div class="footer-banner-action footer-banner-action-profile" id="settings" rel="tooltip" data-placement="top"
+             title="个性化设置">
+            <i aria-hidden="true" class="footer-banner-action-icon icon-settings"></i>
+        </div>
+        <div class="footer-banner-action footer-banner-action-profile" rel="tooltip"
+             onclick="setTools.play_feedback_message();"
+             data-placement="top" title="反馈意见">
+            <i aria-hidden="true" class="footer-banner-action-icon icon-email"></i>
+        </div>
+        <!--版权信息-->
+        <div class="footer-banner-action footer-banner-action-profile" onclick="setTools.play_about_message();"
+             rel="tooltip"
+             data-placement="top" title="关于我们">
+            <i aria-hidden="true" class="footer-banner-action-icon icon-info"></i>
+        </div>
+        <div class="footer-banner-action footer-banner-action-time" rel="tooltip" data-placement="top"
+             title="Fri Apr 07 2017">17:12
+        </div>
+        <div class="footer-banner-action" style="width:5px;border-left:1px solid #ccc"></div>
+    </div>
+    <div class="footer-banner-nav left">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <div class="footer-banner-nav right">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+</div>
+<!--底部结束-->
+<!--在线留言开始-->
+<div class="custome-messager" id="feedback">
+    <div class="custome-messager-content" style="left: 30%; top:30%;">
+        <div class="custome-messager-title">
+            <h2>意见反馈</h2>
+        </div>
+        <div class="custome-messager-body">
+            我们迫切希望得到您有价值的反馈，有您的反馈，我们会做的更好！
+            <div class="custome-messager-inputs">
+                <input class="form-control" placeholder="联系方式" />
+                <textarea data-name="content" value="" rows="5"
+                          class="form-control" placeholder="反馈意见"></textarea>
+            </div>
+        </div>
+        <div class="custome-messager-buttons">
+            <div class="custome-messager-tip"></div>
+            <button class="btn custome-messager-btn btn-default" data-key="yes">确定</button>
+            <button class="btn custome-messager-btn btn-default" data-key="no">取消</button>
+        </div>
+    </div>
+</div>
+<!--在线留言结束-->

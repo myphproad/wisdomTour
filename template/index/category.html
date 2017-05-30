@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+    {include file="index:header" /}
+</head>
+<body data-accent="blue">
+{include file="index:sub_header" /}
+<div class="container-fluid">
+    <div class="row-fluid">
+        {include file="index:left" /}
+        <div class="metro span9">
+            <div id="right-content-control" class="metro-sections">
+                <div class="metro-section tile-span-8">
+                    <ul class="breadcrumb now-site">
+                        <li><a href="#"><i aria-hidden="true" class="icon-home-2"></i>您现在的位置</a>
+                            <span class="divider">:</span>
+                        </li>
+                        <li><a href="__ROOT__">首页</a></li>
+                        <li><a href="active">{$category.catname}</a></li>
+                       <!-- <li class="active">Data</li>  <span class="divider">/</span>-->
+                    </ul>
+                    <div class="bs-docs-example">
+                    <div class="caption">
+                        <p>{$category.content}</p>
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--个性化设置-->
+{include file="index:setting" /}
+<!--个性化设置结束-->
+{include file="index:footer_banner" /}
+{include file="index:copyright" /}<!--版权信息-->
+{include file="index:footer" /}
+<!--   <script src="http://dreamsky.github.io/main/blog/common/init.js"></script>--><!--分享-->
+<script type="text/javascript">
+    $(".metro").metro();
+    /*意见反馈*/
+</script>
+</body>
+</html>

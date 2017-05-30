@@ -1,0 +1,56 @@
+{include file="public:header" /}
+
+<div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:url('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">数据还原</span></div>
+        </div>
+        
+        <div class="result-wrap">
+           
+                <div class="result-title">
+                    <div class="result-list">
+                        <a   href="{:url('Database/index',['type'=>'export'])}"><i class="icon-font"></i>备份数据库</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                
+                <table class="result-tab" width="100%" >
+                    <thead>
+                    <tr>
+                       
+                        <th>备份名称</th>
+                        <th>卷数</th>
+                        <th>压缩</th>
+                        <th>数据大小</th>
+                        <th>备份时间</th>
+                        <th>操作</th>     
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {volist name='list' id='vo'}
+                    <tr align="center">
+                        
+                        <td>{$vo.time|date='Ymd-His',###}</td>
+                        <td>{$vo.part}</td>
+                        <td>{$vo.compress}</td>
+                        <td>{$vo.size|format_bytes}</td>
+                        <td>{$key}</td>
+                        <td>
+                            <a href="{:url('Database/import',['time'=>$vo['time']])}" ><button type="button" class="btn btn-w-m btn-info">还原</button></a>
+                            <a href="{:url('Database/delete',['time'=>$vo['time']])}" ><button type="button" class="btn btn-w-m btn-danger">删除</button></a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+
+                    </table>
+                   
+                </div>
+           
+        </div>
+    </div>
+   
+</div>
+</body>
+</html>

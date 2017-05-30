@@ -1,0 +1,200 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    {include file="index:header" /}
+</head>
+<body data-accent="blue">
+<!-- 预加载界面 -->
+<!--<div class="hte-preloader">
+   <div id="hte-preloader-panel" class="hte-preloader-panel">
+      <div class="hte-preload-title">
+         <img alt="" src="__IMG__/logo.png" >
+         <span   class="segoe">HteOS</span> - <small>与众不同的
+         <span   class="segoe">Web</span>
+      </small>
+      </div>
+      <div class="hte-preload-progress">
+         <img class="hte-preloader-icon" src="__IMG__/preloader.gif">
+       <span class="hte-preloader-text">正在努力奔跑...</span>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+   var ctx = "";
+   var panel = document.getElementById("hte-preloader-panel");
+   var marginTop = ((document.body.offsetHeight - panel.offsetHeight) / 2) - 50;
+   panel.style.marginTop = marginTop > 0 ? marginTop : 200;
+</script>-->
+
+{include file="index:sub_header" /}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="metro span12">
+            <div class="metro-sections">
+                {volist name="index_site_cate" id="vo"}
+                <div class="metro-section tile-span-4">
+                    <h2>{$vo.title}</h2>
+                    <a class="carousel-control-custome remove-tag">
+                        <div id="carousel-example-generic" class="carousel slide vertical" data-ride="carousel">
+                            <!-- Carousel items -->
+                            <!-- Indicators小圆圈 -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                {volist name="carousel" id="carousel_val" key='k'}
+                                <div class="item {if condition='$k == 1'}active{/if}">
+                                    <img height="300px" width="450px" src="__ROOT__{$carousel_val.thumb}" class="carousel-inner-img">
+                                    <div class="carousel-caption">
+                                        <h4>{$carousel_val.title}</h4>
+                                    </div>
+                                </div>
+                                {/volist}
+                            </div>
+                        </div>
+                    </a>
+                    {volist name="vo['cate_detail']" id="val"}
+                    {switch name="val['index_shape']"}
+                    {case value="2"}
+                    <!--样式2（icon图标+描述+标题）-->
+                    <a class="tile wide imagetext {$val.index_bgstyle_title|get_bgcolor_title}"
+                       onclick="setTools.index_list('{$val.tag}','{$val.url}');">
+                        <div class="image-wrapper image-wrapper-one">
+                            <i aria-hidden="true" class="{$val.font_icon}"></i>
+                        </div>
+                        <div class="column-text">
+                            <div class="text4">{$val.description}</div>
+                        </div>
+                        <div class="app-label">{$val.catname}</div>
+                    </a>
+                    {/case}
+                    {case value="1"}
+                    <!--第一种样式-->
+                    <!--样式1(幻灯片+新闻标题)-->
+                    <a class="tile wide imagetext wideimage  carousel-control-custome">
+                        <div id="myCarousel" class="carousel slide">
+                            <div class="carousel-inner">
+                                {volist name="val['carousel_id']" id="carousel_val" key='k'}
+                                <div class="item {if condition='$k == 1'}active{/if}"
+                                     onclick="setTools.index_list('{$val.tag}','{$carousel_val}');">
+                                    <img src="__ROOT__{$carousel_val|get_cover_url}" alt="">
+                                    <div class="carousel-caption {$val.index_bgstyle_title}">
+                                        <h4>{$carousel_val|get_carousel_title}</h4>
+                                    </div>
+                                </div>
+                                {/volist}
+                            </div>
+                        </div>
+                    </a>
+                    {/case}
+                    {case value="3"}
+                    <!--样式3（图片+标题）-->
+                    <a class="tile app wide " onclick="setTools.index_list('{$val.tag}','{$val.url}')">
+                        <div class="image-wrapper-two">
+                            <img src="{$val.thumb}">
+                        </div>
+                        <div class="app-label">{$val.catname}</div>
+                    </a>
+                    {/case}
+                    {default/}
+
+                    <!--样式4（icon图标+标题）-->
+                    <a class="tile app {$val.index_bgstyle_title}"
+                       onclick="setTools.index_list('{$val.tag}','{$val.url}')">
+                        <div class="image-wrapper image-wrapper-there">
+                            <i class="{$val.font_icon}"></i>
+                        </div>
+                        <span class="app-label">{$val.catname}</span>
+                    </a>
+                    {/switch}
+                    {/volist}
+                </div>
+                <!--第二种-->
+                {/volist}
+                <div class="metro-section tile-span-4" id="my_app">
+                    <h2>应用工具</h2>
+                    <a class="tile app weather-app"
+                       onclick="setTools.index_list()">
+                        <div class="image-wrapper image-wrapper-there">
+                            <img :src="dayPictureUrl" alt="">
+                        </div>
+                        <p class="wind">{{wind}}{{weather}}</p>
+                        <p class="temperature">{{temperature}}</p>
+                        <p class="location">银川</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!--个性化设置-->
+{include file="index:setting" /}
+<!--个性化设置结束-->
+{include file="index:footer_banner" /}
+<!--在线留言结束-->
+<!--版权信息-->
+{include file="index:copyright" /}
+<!--版权信息结束-->
+{include file="index:footer" /}
+<script type="text/javascript">
+    $(".metro").metro();
+    $('.carousel').carousel({
+        interval: 2000
+    })
+    setTools.play_about_message();//关于我们
+    $(".remove-tag:gt(0)").remove();
+
+    var vue = new Vue({
+        el: '#my_app',
+        data:{
+            date:null,
+            dayPictureUrl:null,
+            nightPictureUrl:null,
+            temperature:null,
+            weather:null,
+            wind:null
+        }
+    });
+    getWeather();
+    function getWeather() {
+        //提交请求
+        $.ajax({
+            url: "__ROOT__/index.php/Index/getWeather",
+            type: "POST",
+            dataType: "JSON",
+//            async:false,//取消异步请求
+            success: vue_add_data,
+            error: function () {
+                alert(data.message + "出错了  (；′⌒`)!");
+            }
+        });
+    }
+    function vue_add_data(data) {
+        result=eval('(' + data.msg + ')');
+        detail=result.results[0]['weather_data'][0];
+        console.log(detail);
+        if (result.status=="success") {
+            vue.date=detail.date;
+            vue.dayPictureUrl=detail.dayPictureUrl;
+            vue.nightPictureUrl=detail.nightPictureUrl;
+            vue.temperature=detail.temperature;
+            vue.weather=detail.weather;
+            vue.wind=detail.wind;
+        } else {
+            vue.item = '暂时无数据';
+        }
+    }
+</script>
+</body>
+</html>

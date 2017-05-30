@@ -1,0 +1,58 @@
+<!doctype html>
+<head>
+   {include file="index:header" /}
+</head>
+<body data-accent="blue">
+{include file="index:sub_header" /}
+   <div class="container-fluid">
+         <div class="row-fluid">
+            {include file="index:left" /}
+            <div class="span9">
+               <section id="right-content-control">
+                  <ul class="breadcrumb now-site">
+                     <li><a href="#"><i aria-hidden="true" class="icon-home-2"></i>您现在的位置</a>
+                        <span class="divider">:</span>
+                     </li>
+                     <li><a href="__ROOT__">首页</a></li>
+                     <li><a href="active">{$category.catname}</a></li>
+                     <!-- <li class="active">Data</li>  <span class="divider">/</span>-->
+                  </ul>
+                  <div class="bs-docs-example">
+                     <div class="">
+                        <ul class="thumbnails">
+                           {volist name="article_list" id="vo"}
+                              <li class="span4">
+                                 <div class="thumbnail">
+                                    <img src="__ROOT__{$vo.thumb}" alt="">
+                                 </div>
+                                 <div class="caption">
+                                    <h3>{$vo.title}</h3>
+                                    <p>{$vo.description}</p>
+                                    <p>
+                                       <a href="{:url('show',['id'=>$vo['id'],'catid'=>$vo['catid']])}" class="btn btn-primary">详情</a>
+                                       <!-- <a href="#" class="btn">Action</a>-->
+                                    </p>
+                                 </div>
+                              </li>
+                            {/volist}
+                        </ul>
+                        </div>
+                     <div class="pagination">
+                       {$page}
+                     </div>
+                  </div>
+               </section>
+            </div>
+       </div>
+   
+   <!--个性化设置-->
+      {include file="index:setting" /}
+  <!--个性化设置结束-->
+      {include file="index:footer_banner" /}
+   {include file="index:copyright" /}<!--版权信息-->
+  {include file="index:footer" /}
+   <script type="text/javascript">
+      $(".metro").metro();
+   </script>
+</body>
+</html>

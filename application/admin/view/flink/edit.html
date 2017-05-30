@@ -1,0 +1,62 @@
+{include file="public:header" /}
+<div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:url('Index/index')}">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="{:url('Article/index')}">文章管理</a><span class="crumb-step">&gt;</span><span>修改文章</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="{:url('Flink/update')}" method="post" id="myform" name="myform" enctype="multipart/form-data" >
+                 <input type="hidden" name="id" value="{$result.id}" />
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                          <tr>
+                                <th>标题：</th>
+                                <td>
+                                    <input class="common-text" id="title" name="title" value="{$result.title}" type="text" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>地址：</th>
+                                <td>
+                                    <input class="common-text" id="url" name="url" value="{$result.url}" style=" width:800px;" type="text" >
+                                </td>
+                            </tr>
+                           
+                                <tr>
+                                <th>图片：</th>
+                                <td>
+                                 <div style="margin-top:10px;">
+                                    <div id="uploadimg">
+                                        <div id="fileList" class="uploader-list" style="width: 100%; overflow: hidden;"></div>
+                                        <div id="imgPicker">选择图片</div>
+                                    </div>
+                                </div>
+                                <input id="select_picture" hidden="hidden" type="text" value="{$result.logo}" name="logo"/>
+                                {include file="public:upload" /}
+                                </td>
+                            </tr>
+                            {notempty name="result.logo"}
+                              <tr>
+                               <th></th>
+                              <td><img src="{$result.logo}" style="max-width:400px; max-height:100px;" /></td>
+                              </tr>
+                              {/notempty}
+                               
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10"  value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

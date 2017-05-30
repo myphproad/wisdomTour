@@ -1,0 +1,80 @@
+{include file="public:header" /}
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list">
+            <i class="icon-font"></i><a href="{:url('Index/index')}">首页</a><span
+                class="crumb-step">&gt;</span><a class="crumb-name" href="{:url('index')}">列表管理</a><span
+                class="crumb-step">&gt;</span><span>添加</span></div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-content">
+            <form action="{:url('insert')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{$result.id}"/>
+                <table class="insert-tab" width="100%">
+                    <tbody>
+                    <tr>
+                        <th width="20%">标题：</th>
+                        <td>
+                            <input class="common-text" id="title" name="title" style=" width:800px;"
+                                   onBlur="$.post('{:url('get_keywords')}?number=3&sid='+Math.random()*5, {data:$('#title').val()}, function(data){if(data && $('#keywords').val()=='') $('#keywords').val(data); })"
+                                   value="{$result.title}" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>位置：</th>
+                        <td><input type="radio" name="type" {if condition="$detail['type'] eq 1" }checked="checked" {/if}
+                            value="1" >
+                            首页&nbsp;&nbsp;&nbsp; <input type="radio" name="type" value="2" {if
+                                                        condition="$detail['type'] eq 2" }checked="checked" {/if} >系统内
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">链接地址：</th>
+                        <td>
+                            <input class="common-text" id="link" name="link" value="{$result.link}" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">缩略图：</th>
+                        <td>
+                            <div style="margin-top:10px;">
+                                <div id="uploadimg">
+                                    <div id="fileList" class="uploader-list"
+                                         style="width: 100%; overflow: hidden;"></div>
+                                    <div id="imgPicker">选择图片</div>
+                                </div>
+                            </div>
+                            <input id="select_picture" hidden="hidden" type="text" value="{$result.thumb}"
+                                   name="thumb"/>
+                            {include file="public:upload" /}
+                        </td>
+                    </tr>
+                    {notempty name="result.thumb"}
+                    <tr>
+                        <th width="20%"></th>
+                        <td><img src="__ROOT__{$result.thumb}" style="max-width:400px; max-height:100px;"/></td>
+                    </tr>
+                    {/notempty}
+                    <tr>
+                        <th width="20%">描述：</th>
+                        <td><textarea name="description" class="common-textarea" id="description"
+                                      style="width:800px; height:100px;">{$result.description}</textarea>不要超过200字
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--/main-->
+</div>
+</body>
+</html>

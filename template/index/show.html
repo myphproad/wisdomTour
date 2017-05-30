@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+    {include file="index:header" /}
+</head>
+<body data-accent="blue">
+{include file="index:sub_header" /}
+<div class="container-fluid">
+    <div class="row-fluid">
+        {include file="index:left" /}
+        <div class="metro span9">
+            <div id="right-content-control" class="metro-sections">
+                <div class="metro-section tile-span-8">
+                    <ul class="breadcrumb now-site">
+                        <li><a href="#"><i aria-hidden="true" class="icon-home-2"></i>您现在的位置</a>
+                            <span class="divider">:</span>
+                        </li>
+                        <li><a href="__ROOT__">首页</a> <span class="divider">/</span></li>
+                        <li><a href="active">{$category.catname}</a></li>
+                       <!-- <li class="active">Data</li>  <span class="divider">/</span>-->
+                    </ul>
+                    <div class="bs-docs-example">
+                        <!--content-->
+                        <div class="page-header">
+                            <h1>{$article.title} <small><span>{$article.inputtime|date="Y-m-d",###}  点击：23423{$article.hits}</span></small></h1>
+                        </div>
+                        <div class="commonDetailedContents">
+                            {$article.content}<br />
+                            {volist name='keywords' id='vo'}
+                            <a href="__ROOT__/index.php/Index/tag?tag={$vo|urlencode}">{$vo}</a>
+                            {/volist}
+                        </div>
+                        <div class="commonDetailedContentsfoot">
+                            <dl class="clearfix">
+                                <dd class="previous_page"><span>上一篇:</span><a href="{$previous_page.url}">{$previous_page.title}</a></dd>
+                                <dd class="previous_page"><span>下一篇:</span><a href="{$next_page.url}">{$next_page.title}</a></dd>
+                            </dl>
+                        </div>
+                        <!--content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--个性化设置-->
+{include file="index:setting" /}
+<!--个性化设置结束-->
+{include file="index:footer_banner" /}
+{include file="index:copyright" /}<!--版权信息-->
+{include file="index:footer" /}
+<!--   <script src="http://dreamsky.github.io/main/blog/common/init.js"></script>--><!--分享-->
+<script type="text/javascript">
+    $(".metro").metro();
+    /*意见反馈*/
+</script>
+</body>
+</html>
